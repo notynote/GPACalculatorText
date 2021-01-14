@@ -10,6 +10,7 @@ public class Student {
     int creditEarned, creditTransfer,totalCredit, requireCredit;
     String Department;
     ArrayList<Subject> subjects = new ArrayList<>();
+    boolean hasF;
 
     public Student(){
         this.sid = 1801310010;
@@ -18,6 +19,8 @@ public class Student {
         this.creditTransfer = 4;
         this.totalCredit = 128+4;
         this.requireCredit = 160;
+        this.termTaken = 10;
+        this.hasF = false;
         this.subjects.add(new Subject("ENG101", 4, "A"));
         this.subjects.add(new Subject("ENG102", 4, "B+"));
         this.subjects.add(new Subject("ITE101", 4, "A"));
@@ -139,5 +142,13 @@ public class Student {
 
     public void setSubjects(ArrayList<Subject> subjects) {
         this.subjects = subjects;
+    }
+
+    public boolean isHasF() {
+        return hasF;
+    }
+
+    public void setHasF(boolean hasF) {
+        this.hasF = hasF;
     }
 }

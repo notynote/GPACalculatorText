@@ -21,6 +21,9 @@ public class CurrentGPA implements GPA {
         for (Subject subject: student.getSubjects()) {
             Double dGrade = grade.getGradeValue(subject.getGrade());
             gradeXCredit += (dGrade * subject.getCredit());
+            if (subject.getGrade().equalsIgnoreCase("F")) {
+                student.setHasF(true);
+            }
         }
 
         return gradeXCredit/student.getTotalCredit();
@@ -29,7 +32,7 @@ public class CurrentGPA implements GPA {
 
     @Override
     public boolean isDistinction() {
-        if (student.getCreditTransfer() < 20) {
+        if (student.getCreditTransfer() < 20 || !student.isHasF()) {
             return getGPA() >= 3.25;
         }
         return false;

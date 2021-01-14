@@ -1,6 +1,7 @@
 package com.notynote;
 
 import com.notynote.GPA.CurrentGPA;
+import com.notynote.GPA.GraduateGPA;
 
 import java.util.Scanner;
 
@@ -25,12 +26,13 @@ public class Main {
                 try {
                     System.out.println("1. View GPA\n" +
                             "2. Check eligibility for distinction\n" +
-                            "3. End Program");
+                            "3. Check eligibility for graduation\n" +
+                            "4. End Program");
                     usermenu = Integer.parseInt(console.next());
                 } catch (Exception ignore){
                     System.out.println("===Error===");
                 }
-            } while (usermenu != 1 && usermenu != 2 && usermenu != 3);
+            } while (usermenu != 1 && usermenu != 2 && usermenu != 3 && usermenu != 4);
             Student student = new Student();
             CurrentGPA currentGPA = new CurrentGPA(student);
             Double GPA = currentGPA.getGPA();
@@ -58,6 +60,9 @@ public class Main {
                 System.out.println("===================================\n" +
                         distinctions +
                         "\n===================================\n");
+            } else if (usermenu == 3) {
+                GraduateGPA graduateGPA = new GraduateGPA(student);
+                System.out.println(graduateGPA.toString());
             } else {
                 System.out.println("End Program");
                 endprogram = false;
