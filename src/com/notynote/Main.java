@@ -1,5 +1,7 @@
 package com.notynote;
 
+import com.notynote.GPA.CurrentGPA;
+
 import java.util.Scanner;
 
 public class Main {
@@ -33,7 +35,7 @@ public class Main {
             CurrentGPA currentGPA = new CurrentGPA(student);
             Double GPA = currentGPA.getGPA();
             int creditLeft = student.requireCredit - student.totalCredit;
-            String distinctions = "";
+            String distinctions;
 
             if(currentGPA.isDistinction()) {
                 if(currentGPA.isHighDistinction()) {
@@ -56,13 +58,10 @@ public class Main {
                 System.out.println("===================================\n" +
                         distinctions +
                         "\n===================================\n");
-            } else if (usermenu == 3) {
+            } else {
                 System.out.println("End Program");
                 endprogram = false;
             }
-
-
-
 
         } while (endprogram);
 

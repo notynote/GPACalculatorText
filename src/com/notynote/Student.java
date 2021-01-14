@@ -61,4 +61,83 @@ public class Student {
         totalCredit = creditEarned+creditTransfer;
     }
 
+    public int getSid() {
+        return sid;
+    }
+
+    public void setSid(int sid) {
+        this.sid = sid;
+    }
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
+    }
+
+    public String getsPassword() {
+        return sPassword;
+    }
+
+    public void setsPassword(String sPassword) {
+        this.sPassword = sPassword;
+    }
+
+    public int getTermTaken() {
+        return termTaken;
+    }
+
+    public void setTermTaken(int termTaken) {
+        this.termTaken = termTaken;
+    }
+
+    public int getCreditEarned() {
+        return creditEarned;
+    }
+
+    public void setCreditEarned(int creditEarned) {
+        this.creditEarned = creditEarned;
+    }
+
+    public int getCreditTransfer() {
+        return creditTransfer;
+    }
+
+    public void setCreditTransfer(int creditTransfer) {
+        this.creditTransfer = creditTransfer;
+    }
+
+    public int getTotalCredit() {
+        return totalCredit;
+    }
+
+    public void setTotalCredit(int totalCredit) {
+        this.totalCredit = totalCredit;
+    }
+
+    public int getRequireCredit() {
+        return requireCredit;
+    }
+
+    public void setRequireCredit(int requireCredit) {
+        this.requireCredit = requireCredit;
+    }
+
+    public String getDepartment() {
+        return Department;
+    }
+
+    public void setDepartment(String department) {
+        Department = department;
+    }
+
+    public ArrayList<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(ArrayList<Subject> subjects) {
+        this.subjects = subjects;
+    }
 }

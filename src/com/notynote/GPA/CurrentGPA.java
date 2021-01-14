@@ -1,6 +1,10 @@
-package com.notynote;
+package com.notynote.GPA;
 
-public class CurrentGPA implements GPA{
+import com.notynote.Grade;
+import com.notynote.Student;
+import com.notynote.Subject;
+
+public class CurrentGPA implements GPA {
 
     Student student;
 
@@ -12,22 +16,20 @@ public class CurrentGPA implements GPA{
     public Double getGPA() {
 
         Grade grade = new Grade();
-        Double gradeXCredit = 0.0;
+        double gradeXCredit = 0.0;
 
-        for (Subject subject: student.subjects) {
-            Double dGrade = grade.getGradeValue(subject.grade);
-            gradeXCredit += (dGrade * subject.credit);
+        for (Subject subject: student.getSubjects()) {
+            Double dGrade = grade.getGradeValue(subject.getGrade());
+            gradeXCredit += (dGrade * subject.getCredit());
         }
 
-        Double GPA = gradeXCredit/student.totalCredit;
-
-        return GPA;
+        return gradeXCredit/student.getTotalCredit();
 
     }
 
     @Override
     public boolean isDistinction() {
-        if (student.creditTransfer < 20) {
+        if (student.getCreditTransfer() < 20) {
             return getGPA() >= 3.25;
         }
         return false;
