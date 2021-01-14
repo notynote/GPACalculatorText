@@ -1,7 +1,9 @@
 package com.notynote;
 
 import com.notynote.GPA.CurrentGPA;
+import com.notynote.GPA.DistinctionGPA;
 import com.notynote.GPA.GraduateGPA;
+import com.notynote.GPA.HighDistinctionGPA;
 
 import java.util.Scanner;
 
@@ -27,12 +29,14 @@ public class Main {
                     System.out.println("1. View GPA\n" +
                             "2. Check eligibility for distinction\n" +
                             "3. Check eligibility for graduation\n" +
-                            "4. End Program");
+                            "4. Calculate minimum grade for distinction\n" +
+                            "5. Calculate minimum grade for high distinction\n" +
+                            "6. End Program");
                     usermenu = Integer.parseInt(console.next());
                 } catch (Exception ignore){
                     System.out.println("===Error===");
                 }
-            } while (usermenu != 1 && usermenu != 2 && usermenu != 3 && usermenu != 4);
+            } while (usermenu != 1 && usermenu != 2 && usermenu != 3 && usermenu != 4 && usermenu != 5 && usermenu != 6);
             Student student = new Student();
             CurrentGPA currentGPA = new CurrentGPA(student);
             Double GPA = currentGPA.getGPA();
@@ -63,6 +67,12 @@ public class Main {
             } else if (usermenu == 3) {
                 GraduateGPA graduateGPA = new GraduateGPA(student);
                 System.out.println(graduateGPA.toString());
+            } else if (usermenu == 4) {
+                DistinctionGPA distinctionGPA = new DistinctionGPA(student);
+                System.out.println(distinctionGPA);
+            } else if (usermenu == 5) {
+                HighDistinctionGPA highDistinctionGPA = new HighDistinctionGPA(student);
+                System.out.println(highDistinctionGPA);
             } else {
                 System.out.println("End Program");
                 endprogram = false;
