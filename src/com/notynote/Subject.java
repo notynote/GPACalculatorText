@@ -5,9 +5,9 @@ public class Subject {
     //variable
     String name;
     int credit;
-    double grade;
+    String grade;
 
-    public Subject(String name, int credit, Double grade) {
+    public Subject(String name, int credit, String grade) {
         this.name = name;
         this.credit = credit;
         this.grade = grade;

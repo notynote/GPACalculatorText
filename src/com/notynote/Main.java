@@ -21,29 +21,23 @@ public class Main {
             //check for correct input
             do {
                 try {
-                    System.out.println("1. View GPA");
+                    System.out.println("1. View GPA\n" +
+                            "2. Check eligibility for distinction");
                     usermenu = Integer.parseInt(console.next());
                 } catch (Exception ignore){
                     System.out.println("===Error===");
                 }
             } while (usermenu != 1);
-
             Student student = new Student();
 
-            Double gradeXCreadit = 0.0;
+            CurrentGPA currentGPA = new CurrentGPA(student);
+            Double GPA = currentGPA.getGPA();
 
-            for (Subject subject:student.subjects) {
-
-                gradeXCreadit += (subject.grade * subject.credit);
-
-            }
-
-            Double GPA = gradeXCreadit/student.totalCredit;
-            int creditLeft = 160 - student.totalCredit;
+            int creditLeft = student.requireCredit - student.totalCredit;
             String distinctions = "";
 
-            if(GPA >= 3.25 && student.creditTransfer < 20) {
-                if(GPA >= 3.5) {
+            if(currentGPA.isDistinction()) {
+                if(currentGPA.isHighDistinction()) {
                     distinctions = "You are eligible to earn High Distinctions";
                 } else {
                     distinctions = "You are eligible to earn Distinctions";
