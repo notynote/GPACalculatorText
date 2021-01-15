@@ -1,10 +1,15 @@
 package com.notynote;
 
+import com.mysql.cj.jdbc.MysqlDataSource;
 import com.notynote.GPA.CurrentGPA;
 import com.notynote.GPA.DistinctionGPA;
 import com.notynote.GPA.GraduateGPA;
 import com.notynote.GPA.HighDistinctionGPA;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
@@ -16,6 +21,21 @@ public class Main {
 
         int usermenu = 0;
         boolean endprogram = true;
+        Connection connection = null;
+
+        try {
+            connection = connect();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException f) {
+            f.printStackTrace();
+        }
+
+        try {
+            printStudent(connection);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         //do to keep loop program
         do {
@@ -54,6 +74,11 @@ public class Main {
             }
 
             if (usermenu == 1) {
+                try {
+                    printStudent(connection);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 System.out.println("===================================\n" +
                         "Your GPA: " + String.format("%.2f",GPA) +
                         "\nYou earned credit: " + student.totalCredit +
@@ -80,5 +105,33 @@ public class Main {
 
         } while (endprogram);
 
+    }
+
+    private static void printStudent(Connection connection) throws SQLException {
+
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM student");
+        ResultSet resultSet = statement.executeQuery();
+
+        while (resultSet.next()) {
+            System.out.println(resultSet.getString("SID"));
+            System.out.println(resultSet.getString("S_Name"));
+        }
+
+        statement.close();
+
+    }
+
+    private static Connection connect() throws ClassNotFoundException, SQLException {
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        MysqlDataSource dataSource = new MysqlDataSource();
+        dataSource.setServerName("localhost");
+        dataSource.setServerTimezone("Asia/Bangkok");
+        dataSource.setPort(3306);
+        dataSource.setDatabaseName("gpa_calculation");
+        dataSource.setUser("pg2");
+        dataSource.setPassword("Passw0rd");
+
+        return dataSource.getConnection();
     }
 }
