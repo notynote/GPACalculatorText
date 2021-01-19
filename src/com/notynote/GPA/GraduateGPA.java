@@ -4,7 +4,7 @@ import com.notynote.Grade;
 import com.notynote.Student;
 import com.notynote.Subject;
 
-public class GraduateGPA implements GPA {
+public class GraduateGPA extends GPA {
 
     Student student;
     CurrentGPA currentGPA;

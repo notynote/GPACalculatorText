@@ -4,7 +4,7 @@ import com.notynote.Grade;
 import com.notynote.Student;
 import com.notynote.Subject;
 
-public class DistinctionGPA implements GPA {
+public class DistinctionGPA extends GPA {
 
     //calculate minimum grade for distinction GPA
     Student student;
@@ -19,30 +19,11 @@ public class DistinctionGPA implements GPA {
         this.oldGPAXOldCredit = student.getTotalCredit() * currentGPA.getGPA();
     }
 
-    //if all the rest subject has A and will not fulfill 3.25 then say it impossible
-    public boolean possibleDistinction() {
-
-        for (Subject subject: student.getSubjects()) {
-            if (subject.getGrade().equalsIgnoreCase("F")) {
-                return false;
-            }
-        }
-        double remainCreditXGrade = 0.0;
-
-        for (int i = 0; i < remainingSubject; i++) {
-            remainCreditXGrade += 4*4;
-        }
-
-        double maximumGPA = (remainCreditXGrade+oldGPAXOldCredit)/student.getRequireCredit();
-
-        return maximumGPA > 3.25;
-    }
-
     @Override
     public String toString() {
 
-        if (possibleDistinction()) {
-            double possibleGrade = FindPossibleGrade();
+        if (possibleDistinction(student,remainingSubject,oldGPAXOldCredit)) {
+            double possibleGrade = FindPossibleGrade(student,remainingSubject,3.25,oldGPAXOldCredit);
 
             Grade grade = new Grade();
 
@@ -55,23 +36,6 @@ public class DistinctionGPA implements GPA {
         } else {
             return "IT IS NOT POSSIBLE TO EARN DISTINCTION OMG LOOK AT YOURSELF COME ON";
         }
-    }
-
-    private double FindPossibleGrade() {
-
-        double remainCreditXGrade = 0.0;
-
-        for (double i = 1.0; i <= 4.0; i+=0.5) {
-            for (int j = 0; j < remainingSubject; j++) {
-                remainCreditXGrade += i*4;
-            }
-            if ((remainCreditXGrade+oldGPAXOldCredit)/student.getRequireCredit() > 3.25) {
-                return i;
-            }
-
-        }
-
-        return 0.0;
     }
 
     @Override
